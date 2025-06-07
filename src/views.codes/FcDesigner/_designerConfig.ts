@@ -12,7 +12,7 @@ export const formCofnig = {
 export const _testData1 = [
     {
         "type": "input",
-        "field": "F8gfmbjghlv4abc",
+        "field": "inputField",
         "title": "输入框",
         "info": "",
         "$required": false,
@@ -24,7 +24,7 @@ export const _testData1 = [
     },
     {
         "type": "checkbox",
-        "field": "F4zwmbkfk0eabbc",
+        "field": "CheckboxField",
         "title": "多选框",
         "info": "",
         "effect": { "fetch": "" },
@@ -43,7 +43,7 @@ export const _testData1 = [
     },
     {
         "type": "radio",
-        "field": "Fb17mbkfk18bbec",
+        "field": "RadioField",
         "title": "单选框",
         "info": "",
         "effect": { "fetch": "" },
@@ -62,7 +62,7 @@ export const _testData1 = [
     },
     {
         "type": "switch",
-        "field": "SwitchValue01",
+        "field": "SwitchField",
         "title": "开关",
         "info": "",
         "$required": false,
@@ -74,7 +74,7 @@ export const _testData1 = [
     },
     {
         "type": "rate",
-        "field": "Ffobmbkfk3sjbkc",
+        "field": "RateField",
         "title": "评分",
         "info": "",
         "$required": false,
@@ -86,7 +86,7 @@ export const _testData1 = [
     },
     {
         "type": "cascader",
-        "field": "Fp8umbkfk53obnc",
+        "field": "CascaderField",
         "title": "级联选择器",
         "info": "",
         "effect": { "fetch": "" },
@@ -212,12 +212,13 @@ export const _testData1 = [
             "action": "#",
             'maxCount': 1,
 
-            // 必须加入 onSuccess, 否则 formCreate 获取不到值
-            // 文档对应位置：https://www.form-create.com/v2/vant/components/uploader.html
-            "onSuccess": function (res, file) {
-                console.log(res.data);
-                file.url = res.data.url;
-            },
+            // ( 这里是 vant 的 uploader, 存在问题, 所以这里没用到 )
+            // // 必须加入 onSuccess, 否则 formCreate 获取不到值
+            // // 文档对应位置：https://www.form-create.com/v2/vant/components/uploader.html
+            // "onSuccess": function (res, file) {
+            //     console.log(res.data);
+            //     file.url = res.data.url;
+            // },
 
             // 文件读取完成后的回调函数, 返回布尔值
             // https://develop365.gitlab.io/vant/zh-CN/uploader/
