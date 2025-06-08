@@ -14,6 +14,8 @@ import 'element-plus/dist/index.css'
 import Vant from 'vant';
 import "vant/lib/index.css";
 
+import './assets/css/override.less'
+
 
 const app = createApp(App);
 
