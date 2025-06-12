@@ -8,6 +8,36 @@ export const formCofnig = {
     "form": { "labelWidth": "100%", "colon": true, "inputAlign": "left", "labelAlign": "left" },
 }
 
+/**
+ * 补全函数, 用于补全表单 Rule 规则中的执行函数的
+ */
+export const myFunc = {
+    afterRead: function (item: UploaderFileListItem) {
+        item.status = 'uploading';
+        item.message = '上传中...';
+
+        // vant的upload上传后不会回写数据到formCreate的临时解决方法：
+        // 1. 最外层写上： value: [], 解决 this._object.modelValue 为 null 的问题
+        // 2. 通过 this._object.modelValue 拿到表单中当前项值的引用
+        // 3. myValue.push(img1); 写入到引用对象内即可
+        const myValue = this._object.modelValue as string[];
+
+        return new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                item.url = img1;
+                item.objectUrl = img1;
+
+                item.status = 'done';
+                item.message = '上传成功';
+
+                myValue.push(img1);
+                resolve(img1);
+            }, 1500);
+        });
+    }
+}
+
 // 表单测试数据
 export const _testData1 = [
     {
@@ -204,6 +234,107 @@ export const _testData1 = [
         // 说明一下, uploader 是 vant 的组件, 不是 element-plus 的组件
         "type": "uploader",
         "field": "UploadImage01",
+        "title": "上传",
+        "info": "",
+        "$required": false,
+        value: [],
+        "props": {
+            "action": "#",
+            'maxCount': 1,
+
+            // ( 这里是 vant 的 uploader, 存在问题, 所以这里没用到 )
+            // // 必须加入 onSuccess, 否则 formCreate 获取不到值
+            // // 文档对应位置：https://www.form-create.com/v2/vant/components/uploader.html
+            // "onSuccess": function (res, file) {
+            //     console.log(res.data);
+            //     file.url = res.data.url;
+            // },
+
+            // 文件读取完成后的回调函数, 返回布尔值
+            // https://develop365.gitlab.io/vant/zh-CN/uploader/
+            "afterRead": function(item: UploaderFileListItem) {
+                item.status = 'uploading';
+                item.message = '上传中...';
+
+                // vant的upload上传后不会回写数据到formCreate的临时解决方法：
+                // 1. 最外层写上： value: [], 解决 this._object.modelValue 为 null 的问题
+                // 2. 通过 this._object.modelValue 拿到表单中当前项值的引用
+                // 3. myValue.push(img1); 写入到引用对象内即可
+                const myValue = this._object.modelValue as string[];
+
+                return new Promise((resolve, reject) => {
+
+                    setTimeout(() => {
+                        item.url = img1;
+                        item.objectUrl = img1;
+
+                        item.status = 'done';
+                        item.message = '上传成功';
+
+                        myValue.push(img1);
+                        resolve(img1);
+                    }, 1500);
+                });
+            }
+        },
+        "_fc_id": "id_F23kmbkfk60abrc",
+        "name": "ref_Fsk7mbkfk60absc",
+        "display": true,
+        "hidden": false,
+        "_fc_drag_tag": "uploader"
+    }
+]
+
+
+// 表单测试数据
+export const _testData2 = [
+    {
+        "type": "input",
+        "field": "UserName",
+        "title": "输入框",
+        "info": "",
+        "$required": false,
+        "_fc_id": "id_F4kbmbjghlv4acc",
+        "name": "ref_Fwrtmbjghlv4adc",
+        "display": true,
+        "hidden": false,
+        "_fc_drag_tag": "input"
+    },
+    {
+        "type": "checkbox",
+        "field": "CheckboxValue",
+        "title": "多选框",
+        "info": "",
+        "effect": { "fetch": "" },
+        "$required": false,
+        "optionsTo": "props.options",
+        "options": [
+            { "text": "选项01", "value": "1" },
+            { "text": "选项02", "value": "2" },
+            { "text": "选项03", "value": "3" }
+        ],
+        "_fc_id": "id_Ffkembkfk0eabcc",
+        "name": "ref_F51ymbkfk0eabdc",
+        "display": true,
+        "hidden": false,
+        "_fc_drag_tag": "checkbox"
+    },
+    {
+        "type": "switch",
+        "field": "IsUse",
+        "title": "开关",
+        "info": "",
+        "$required": false,
+        "_fc_id": "id_Fqnzmbkfk2vybic",
+        "name": "ref_F0r5mbkfk2vybjc",
+        "display": true,
+        "hidden": false,
+        "_fc_drag_tag": "switch"
+    },
+    {
+        // 说明一下, uploader 是 vant 的组件, 不是 element-plus 的组件
+        "type": "uploader",
+        "field": "BgImage",
         "title": "上传",
         "info": "",
         "$required": false,

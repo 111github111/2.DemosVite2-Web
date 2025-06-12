@@ -1,6 +1,6 @@
 
 export default {
-    Copy: function (value) {
-        return JSON.parse(JSON.stringify(value))
+    Copy: function <T>(value: T) {
+        return JSON.parse(JSON.stringify(value)) as T;
     }
 }
